@@ -102,6 +102,7 @@ class _LoginTuristaState extends State<LoginTurista> {
 
   SimpleUIController simpleUIController = Get.put(SimpleUIController());
 
+  /*
   @override
   Widget build(BuildContext context) {
 
@@ -129,9 +130,42 @@ class _LoginTuristaState extends State<LoginTurista> {
           )
       ),
     );
+
+  }
+  */
+  @override
+  Widget build(BuildContext context) {
+    // Wrap the page with a Scaffold
+    var size = MediaQuery.of(context).size;
+    var theme = Theme.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(''),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 600) {
+              return _buildLargeScreen(size, simpleUIController, theme);
+            } else {
+              return _buildSmallScreen(size, simpleUIController, theme);
+            }
+          },
+        ),
+      ),
+    );
   }
 
-    /// For large screens
+
+
+  /// For large screens
     Widget _buildLargeScreen(
         Size size, SimpleUIController simpleUIController, ThemeData theme) {
       return Row(

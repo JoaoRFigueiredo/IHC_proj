@@ -23,10 +23,10 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-              CustomAppBar(),
-              Spacer(),
-              Body(),
-              Spacer(
+            CustomAppBar(),
+            Spacer(),
+            Body(),
+            Spacer(
               flex: 2,
             ),
           ],
