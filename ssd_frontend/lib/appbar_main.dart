@@ -52,7 +52,7 @@ class CustomAppBar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => AboutUS()),
                     );
                     break;
-                  case 'Interesses':
+                  case 'interesses':
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Interesses()),
