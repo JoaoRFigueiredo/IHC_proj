@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssd_frontend/Favoritos.dart';
 import 'package:ssd_frontend/Interesses.dart';
-import 'package:ssd_frontend/AveiroInteressesPage.dart';
 import 'package:ssd_frontend/AboutUS.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
@@ -210,8 +209,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 
-class Interesses extends StatelessWidget {
-  const Interesses({Key? key}) : super(key: key);
+class AveiroInteressesPage extends StatelessWidget {
+  const AveiroInteressesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -237,18 +236,7 @@ class Interesses extends StatelessWidget {
               children: [
                 _buildButton(
                   'assets/main_images/Aveiro.jpg',
-                  'Aveiro',
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AveiroInteressesPage()),
-                        );
-                  },
-                ),
-                SizedBox(width: 20),
-                _buildButton(
-                  'assets/main_images/cafe.jpeg',
-                  'Viseu',
+                  'Eventos Aveiro',
                       () {
                     // Adicione o código para o onPressed aqui
                   },
@@ -256,7 +244,15 @@ class Interesses extends StatelessWidget {
                 SizedBox(width: 20),
                 _buildButton(
                   'assets/main_images/cafe.jpeg',
-                  'Coimbra',
+                  'Passadiços Aveiro',
+                      () {
+                    // Adicione o código para o onPressed aqui
+                  },
+                ),
+                SizedBox(width: 20),
+                _buildButton(
+                  'assets/main_images/cafe.jpeg',
+                  'Gastronomia',
                       () {
                     // Adicione o código para o onPressed aqui
                   },
@@ -264,7 +260,7 @@ class Interesses extends StatelessWidget {
                 SizedBox(width: 20),
                 _buildButton(
                   'assets/main_images/Lisboa.jpeg',
-                  'Lisboa',
+                  'Praias Aveiro',
                       () {
                     // Adicione o código para o onPressed aqui
                   },

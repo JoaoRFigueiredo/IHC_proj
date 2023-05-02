@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ssd_frontend/componentes/constants.dart';
 import 'package:ssd_frontend/features_empresa/empresa.dart';
+import 'package:ssd_frontend/firstPage.dart';
 import 'package:ssd_frontend/login/login_turista.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:image_card/image_card.dart';
@@ -57,7 +58,7 @@ class Destinos extends StatelessWidget {
         primaryColor: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomeScreen(),
+      home: firstPage(),
     );
 
 

@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ssd_frontend/Favoritos.dart';
 import 'package:ssd_frontend/Interesses.dart';
-import 'package:ssd_frontend/AveiroInteressesPage.dart';
 import 'package:ssd_frontend/AboutUS.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
-import 'features_empresa/features_empresa.dart';
-import 'login/login_turista.dart';
+import 'package:ssd_frontend/features_empresa/features_empresa.dart';
+import 'package:ssd_frontend/login/login_turista.dart';
 
+class CustomAppBar2 extends StatelessWidget {
+  const CustomAppBar2 ({Key? key}) : super(key: key);
 
-
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
-
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 50);
-  //Size get preferredSize => MediaQuery.of(context).size;
   @override
   Widget build(BuildContext context) {
     return Container(
-
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
       // padding: const EdgeInsets.fromLTRB(10, 20, 20, 20), // ajuste aqui
@@ -29,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, -2),
-            blurRadius: 40,
+            blurRadius: 30,
             color: Colors.black.withOpacity(0.16),
           ),
         ],
@@ -37,6 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 
       child: Row(
+
         children: [
 
           Container(
@@ -102,18 +96,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 0),
-              child: Image.asset(
-                "assets/icons/icon_app.png",
-                height: 50,
-                width: 40,
-                alignment: Alignment.topLeft,
-              ),
+          Padding(
+            padding: const EdgeInsets.only(left: 0),
+            child: Image.asset(
+              "assets/icons/icon_app.png",
+              height: 40,
+              alignment: Alignment.topLeft,
             ),
           ),
 
@@ -144,6 +132,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 5,
           ),
 
+
+          /*
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => RegistoEmpresaPage())
+                );
+              },
+              child: Text(
+                "Registo de Empresa",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              )),
+          */
 
           ElevatedButton(
             onPressed: () {
@@ -184,6 +187,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           SizedBox(
             width: 5,
           ),
+
           SizedBox(
             width: 5,
           ),
@@ -203,111 +207,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             width: 5,
           ),
 
-        ],
-      ),
-    );
-  }
-}
-
-
-class Interesses extends StatelessWidget {
-  const Interesses({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Clique no distrito de seu interesse:",
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Favoritos(),
+                ),
+              );
+            },
+            child: Text(
+              "Registo Empresa",
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
-
               ),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildButton(
-                  'assets/main_images/Aveiro.jpg',
-                  'Aveiro',
-                      () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AveiroInteressesPage()),
-                        );
-                  },
-                ),
-                SizedBox(width: 20),
-                _buildButton(
-                  'assets/main_images/cafe.jpeg',
-                  'Viseu',
-                      () {
-                    // Adicione o código para o onPressed aqui
-                  },
-                ),
-                SizedBox(width: 20),
-                _buildButton(
-                  'assets/main_images/cafe.jpeg',
-                  'Coimbra',
-                      () {
-                    // Adicione o código para o onPressed aqui
-                  },
-                ),
-                SizedBox(width: 20),
-                _buildButton(
-                  'assets/main_images/Lisboa.jpeg',
-                  'Lisboa',
-                      () {
-                    // Adicione o código para o onPressed aqui
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+          )
 
-  Widget _buildButton(String image, String label, Function() onPressed) {
-    return SizedBox(
-      width: 300,
-      height: 270,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.grey),
-          ),
-          alignment: Alignment.center,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              image,
-              width: 300,
-              height: 230,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: 8),
-            Text(
-              label,
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+          /*
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => FeaturesEmpresa())
+                );
+              },
+              child: Text(
+                "Área da Empresa",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              )),
+          */
+        ],
       ),
     );
   }
