@@ -10,7 +10,7 @@ class firstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Página Inicial'),
+        title: Text('Lusitravel'),
       ),
       body: Center(
         child: Column(
@@ -40,7 +40,7 @@ class firstPage extends StatelessWidget {
             Container(
               width: 200,
               height: 200,
-              color: Colors.green,
+              color: Colors.orange,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(

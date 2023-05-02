@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ssd_frontend/Favoritos.dart';
 import 'package:ssd_frontend/Interesses.dart';
 import 'package:ssd_frontend/AboutUS.dart';
-import 'package:ssd_frontend/registo_empresas/registo.dart';
-import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
+import 'package:ssd_frontend/Empresas/RegistoEmpresaPage.dart';
 import 'package:ssd_frontend/features_empresa/features_empresa.dart';
 import 'package:ssd_frontend/login/login_turista.dart';
-
+import 'package:ssd_frontend/servicos/servicos.dart';
 class CustomAppBar2 extends StatelessWidget {
   const CustomAppBar2 ({Key? key}) : super(key: key);
 
@@ -64,28 +63,26 @@ class CustomAppBar2 extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginTurista()),
                     );
                     break;
-                  case 'Registro':
+                  case 'Registo Empresa':
                   // Adicione a navegação para a página de registro aqui
                     break;
+                  case  'Area Empresa':
+                    //
                 }
               },
 
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
-                  value: 'favoritos',
-                  child: Text('Favoritos'),
-                ),
-                PopupMenuItem<String>(
-                  value: 'interesses',
-                  child: Text('Interesses'),
+                  value: 'Area empresa',
+                  child: Text('Área Empresa'),
                 ),
                 PopupMenuItem<String>(
                   value: 'Login',
                   child: Text('Login'),
                 ),
                 PopupMenuItem<String>(
-                  value: 'Registro',
-                  child: Text('Criar Conta'),
+                  value: 'Registo Empresa',
+                  child: Text('Registo Empresa'),
                 ),
                 PopupMenuItem<String>(
                   value: 'AboutUS',
@@ -95,6 +92,7 @@ class CustomAppBar2 extends StatelessWidget {
               child: Icon(Icons.menu), // ícone do menu
 
             ),
+
           ),
           Padding(
             padding: const EdgeInsets.only(left: 0),
@@ -148,41 +146,8 @@ class CustomAppBar2 extends StatelessWidget {
               )),
           */
 
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Favoritos(),
-                ),
-              );
-            },
-            child: Text(
-              "Favoritos",
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
+
           SizedBox(width: 10), // Adicionado aqui
-
-
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Interesses(),
-                ),
-              );
-            },
-            child: Text(
-              "Interesses",
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
-          ),
 
           SizedBox(
             width: 5,
@@ -212,7 +177,7 @@ class CustomAppBar2 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Favoritos(),
+                  builder: (context) => RegistoEmpresaPage(),
                 ),
               );
             },
@@ -222,9 +187,11 @@ class CustomAppBar2 extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-          )
+          ),
 
-          /*
+          SizedBox(
+            width: 5,
+          ),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
@@ -237,7 +204,7 @@ class CustomAppBar2 extends StatelessWidget {
                   fontSize: 18,
                 ),
               )),
-          */
+
         ],
       ),
     );
