@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
 import 'package:ssd_frontend/main.dart';
 import 'package:ssd_frontend/noticias/feature_noticias.dart';
 import 'package:ssd_frontend/servicos/servicos.dart';
@@ -109,10 +110,7 @@ class _FeaturesEmpresaState extends State<FeaturesEmpresa> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CustomAppBar2()),
-                      );
+                      Navigator.pop(context);
                     },
                   ),
 
