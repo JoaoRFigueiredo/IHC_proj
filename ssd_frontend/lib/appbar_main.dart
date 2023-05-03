@@ -11,8 +11,13 @@ import 'login/login_turista.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
 
-
   void openSearch(BuildContext context) {
+    String? selectedCategory; // valor padrão para a primeira categoria
+    String? selectedDistrict; // valor padrão para o primeiro distrito
+
+    final List<String> categories = ['Restauração', 'Eventos', 'Praias', 'Turismo Local', 'Museus'];
+    final List<String> districts = [    'Aveiro',    'Beja',    'Braga',    'Bragança',    'Castelo Branco',    'Coimbra',    'Évora',    'Faro',    'Guarda',    'Leiria',    'Lisboa',    'Portalegre',    'Porto',    'Santarém',    'Setúbal',    'Viana do Castelo',    'Vila Real',    'Viseu'  ];
+
     showDialog(
       context: context,
       builder: (context) {
@@ -21,21 +26,43 @@ class CustomAppBar extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
+              DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: 'Distrito',
                 ),
+                items: districts.map((String district) {
+                  return DropdownMenuItem<String>(
+                    value: district,
+                    child: Text(district),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  selectedDistrict = value;
+                },
+                value: selectedDistrict,
               ),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Concelho',
                 ),
               ),
-              TextField(
+
+              DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: 'Categoria',
                 ),
+                items: categories.map((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  selectedCategory = value;
+                },
+                value: selectedCategory,
               ),
+
             ],
           ),
           actions: [
@@ -57,6 +84,9 @@ class CustomAppBar extends StatelessWidget {
       },
     );
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
