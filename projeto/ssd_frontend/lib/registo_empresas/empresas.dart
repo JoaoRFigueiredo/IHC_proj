@@ -1,1 +1,0 @@
-export 'registo.dart';
