@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ssd_frontend/Favoritos.dart';
 import 'package:ssd_frontend/Interesses.dart';
 import 'package:ssd_frontend/AboutUS.dart';
+import 'package:ssd_frontend/SearchScreen.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
 import 'features_empresa/features_empresa.dart';
@@ -9,6 +10,82 @@ import 'login/login_turista.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({Key? key}) : super(key: key);
+
+  void openSearch(BuildContext context) {
+    String? selectedCategory; // valor padrão para a primeira categoria
+    String? selectedDistrict; // valor padrão para o primeiro distrito
+
+    final List<String> categories = ['Restauração', 'Eventos', 'Praias', 'Turismo Local', 'Museus'];
+    final List<String> districts = [    'Aveiro',    'Beja',    'Braga',    'Bragança',    'Castelo Branco',    'Coimbra',    'Évora',    'Faro',    'Guarda',    'Leiria',    'Lisboa',    'Portalegre',    'Porto',    'Santarém',    'Setúbal',    'Viana do Castelo',    'Vila Real',    'Viseu'  ];
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Pesquisar'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Distrito',
+                ),
+                items: districts.map((String district) {
+                  return DropdownMenuItem<String>(
+                    value: district,
+                    child: Text(district),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  selectedDistrict = value;
+                },
+                value: selectedDistrict,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Concelho',
+                ),
+              ),
+
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Categoria',
+                ),
+                items: categories.map((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  selectedCategory = value;
+                },
+                value: selectedCategory,
+              ),
+
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Adicione aqui a lógica de pesquisa com base nos inputs do usuário
+                Navigator.of(context).pop();
+              },
+              child: Text('Pesquisar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -106,47 +183,38 @@ class CustomAppBar extends StatelessWidget {
           ),
 
 
-
-
-
-          const SizedBox(width: 5),
+          const SizedBox(width: 10),
           Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(left: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Pesquisar",
-                  border: InputBorder.none,
-                  suffixIcon: Icon(Icons.search),
+            child: GestureDetector(
+              onTap: () {
+                openSearch(context);
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                style: TextStyle(fontSize: 18),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: const Text(
+                        "Pesquisar",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    const Icon(Icons.search),
+                  ],
+                ),
               ),
             ),
           ),
           SizedBox(
-            width: 5,
+            width: 10,
           ),
 
 
-          /*
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => RegistoEmpresaPage())
-                );
-              },
-              child: Text(
-                "Registo de Empresa",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              )),
-          */
 
           ElevatedButton(
             onPressed: () {
@@ -206,20 +274,6 @@ class CustomAppBar extends StatelessWidget {
             width: 5,
           ),
 
-          /*
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => FeaturesEmpresa())
-                );
-              },
-              child: Text(
-                "Área da Empresa",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              )),
-          */
         ],
       ),
     );

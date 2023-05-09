@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ssd_frontend/componentes/constants.dart';
 import 'package:ssd_frontend/total_services/total_services.dart';
-import 'home_screen.dart';
+import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class Body2 extends StatelessWidget {
+  const Body2 ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class Body extends StatelessWidget {
           Text(
             "Descubra aqui os serviços apropriados\npara o seu gosto!",
             style: TextStyle(
-              fontSize: 21,
-              color: Colors.white
+                fontSize: 21,
+                color: Colors.white
             ),
           ),
 
@@ -34,25 +34,25 @@ class Body extends StatelessWidget {
 
           FittedBox(
             // Now it just take the required spaces
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.black,
-                  backgroundColor: Colors.white,
-                ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => TodosServicos())
-                    );
-                  },
-                  child: Text(
-                    "COMEÇAR",
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.blue,
-                    ),
-                  ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shadowColor: Colors.black,
+                backgroundColor: Colors.white,
               ),
-              /*Row(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => TodosServicos())
+                );
+              },
+              child: Text(
+                "COMEÇAR",
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            /*Row(
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(10),
@@ -83,7 +83,7 @@ class Body extends StatelessWidget {
                   const SizedBox(width: 15),
                 ],
               ),*/
-            ),
+          ),
 
         ],
       ),

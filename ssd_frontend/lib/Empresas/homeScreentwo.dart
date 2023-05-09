@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'body_main.dart';
-import 'appbar_main.dart';
+import 'package:ssd_frontend/Empresas/appbar_main_two.dart';
+import 'package:ssd_frontend/Empresas/body_main_two.dart';
+import 'body_main_two.dart';
+import 'appbar_main_two.dart';
 
-class homeScreen extends StatelessWidget {
-  const homeScreen({super.key});
+class homeScreentwo extends StatelessWidget {
+  const homeScreentwo ({super.key});
 
   @override
   Widget build (BuildContext context) {
@@ -23,9 +25,9 @@ class homeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            CustomAppBar(),
+            CustomAppBar2(),
             Spacer(),
-            Body(),
+            Body2(),
             Spacer(
               flex: 2,
             ),
