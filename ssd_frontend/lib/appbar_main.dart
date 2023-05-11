@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ssd_frontend/Favoritos.dart';
 import 'package:ssd_frontend/Interesses.dart';
 import 'package:ssd_frontend/AboutUS.dart';
-import 'package:ssd_frontend/SearchScreen.dart';
+//import 'package:ssd_frontend/SearchScreen.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
+import 'result_search.dart';
+
 import 'features_empresa/features_empresa.dart';
 import 'login/login_turista.dart';
 
@@ -73,12 +75,16 @@ class CustomAppBar extends StatelessWidget {
               child: Text('Cancelar'),
             ),
             ElevatedButton(
-              onPressed: () {
-                // Adicione aqui a lógica de pesquisa com base nos inputs do usuário
-                Navigator.of(context).pop();
-              },
-              child: Text('Pesquisar'),
-            ),
+		  onPressed: () {
+		    // Adicione aqui a lógica de pesquisa com base nos inputs do usuário
+		    Navigator.of(context).push(
+		      MaterialPageRoute(
+			builder: (context) => ResultSearch(),
+		      ),
+		    );
+		  },
+		  child: Text('Pesquisar'),
+		),
           ],
         );
       },
