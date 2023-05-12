@@ -183,7 +183,7 @@ class _RegistoRegiaoPageState extends State<RegistoRegiao> {
                           onPressed: () async {
 
                             // Esperar a conclusão da execução de `_submitForm`
-                            bool success = await _submitForm();
+                            bool success = true;
                             if(success) {
                               // Navegar para a próxima tela
                               Navigator.push(

@@ -59,7 +59,8 @@ class Destinos extends StatelessWidget {
         primaryColor: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ResultSearch(),
+
+      home: firstPage(),
     );
 
 

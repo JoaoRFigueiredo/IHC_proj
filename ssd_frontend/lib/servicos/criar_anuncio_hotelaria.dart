@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
+
 class CriarAnuncioHotelaria extends StatefulWidget {
   const CriarAnuncioHotelaria({Key? key}) : super(key: key);
 
@@ -65,6 +67,7 @@ class _CriarAnuncioHotelariaState extends State<CriarAnuncioHotelaria> {
                       ],
                     ),
                   ),
+
                 ],
               ),
             ),
@@ -80,7 +83,7 @@ class _CriarAnuncioHotelariaState extends State<CriarAnuncioHotelaria> {
         foregroundColor: Colors.white,
         shadowColor: Colors.transparent,
         title: const Text(
-          "Criar Anúncio - Hotelaria",
+          "Criar Anúncio - Restauração",
           style: TextStyle(
               fontSize: 20,
               color: Colors.white
@@ -168,9 +171,19 @@ class _CriarAnuncioHotelariaState extends State<CriarAnuncioHotelaria> {
             ),
         ),
       ),
+        bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(16),
+        child: ElevatedButton(
+        onPressed: () {
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => homeScreentwo()),
+        );
+        },
+        child: Text('Criar anúncio'),
+        ),
 
-
+        ),
     );
   }
-
 }

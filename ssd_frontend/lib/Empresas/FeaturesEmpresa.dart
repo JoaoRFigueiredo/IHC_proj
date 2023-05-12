@@ -110,7 +110,11 @@ class _FeaturesEmpresaState extends State<FeaturesEmpresa> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => homeScreentwo()),
+                            (Route<dynamic> route) => false,
+                      );
                     },
                   ),
 
@@ -215,7 +219,7 @@ class _ProfileInfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<ProfileInfoItem> _items = [      ProfileInfoItem("Anúncios", utilizador?.services_count ?? 0),      ProfileInfoItem("Visitantes", 666),    ];
+    final List<ProfileInfoItem> _items = [      ProfileInfoItem("Anúncios",  0),      ProfileInfoItem("Visitantes", 2),    ];
 
     return Container(
       height: 80,

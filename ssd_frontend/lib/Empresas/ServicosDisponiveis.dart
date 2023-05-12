@@ -11,6 +11,7 @@ import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
 import '../componentes/constants.dart';
 import '../componentes/simple_ui_controller.dart';
 import '../features_empresa/features_empresa.dart';
+import '../servicos/criar_anuncio_hotelaria.dart';
 import '../formularios/forms_restauracao.dart';
 
 
@@ -135,9 +136,11 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
                 height: height*0.1,
                 child: ElevatedButton(
                     onPressed: () {
-                     // Navigator.push(context, MaterialPageRoute(
-                         // builder: (context) => RestaurantForm())
-                      //);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CriarAnuncioHotelaria()),
+
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       shadowColor: Colors.black,

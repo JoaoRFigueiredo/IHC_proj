@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ssd_frontend/home_screen.dart';
 import 'package:ssd_frontend/registo_empresas/empresas.dart';
 
 import '../login/login_turista.dart';
@@ -369,7 +370,7 @@ class _SignUpViewState extends State<SignUpView> {
           if (_formKey.currentState!.validate()) {
             // ... Navigate To your Home Page
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => const RegistoEmpresaPage())
+                builder: (context) => const homeScreen())
             );
           }
         },

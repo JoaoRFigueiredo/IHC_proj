@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
             ),
           ),
           Text(
-            "Descubra aqui os serviços apropriados\npara o seu gosto!",
+            "Venha conhecer Portugal com a Lusitravel\!",
             style: TextStyle(
               fontSize: 21,
               color: Colors.white
@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "COMEÇAR",
+                    "Descubra mais sobre nós!",
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.blue,

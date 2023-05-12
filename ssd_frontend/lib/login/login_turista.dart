@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ssd_frontend/home_screen.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
 import '../componentes/constants.dart';
 import '../componentes/simple_ui_controller.dart';
@@ -446,7 +447,7 @@ class _LoginTuristaState extends State<LoginTurista> {
           print(passwordController.text);
           if (user != null) {
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => FeaturesEmpresa())
+                builder: (context) => homeScreen())
             );
           }
         },

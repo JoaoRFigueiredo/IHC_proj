@@ -146,28 +146,31 @@ class _RegistoEmpresaPageState extends State<RegistoEmpresaPage> {
 
                 ElevatedButton(
                   onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      // Se o formulário for válido, chamar `save` irá salvar os dados em `_empresa`.
+                      _formKey.currentState!.save();
 
-                    // Esperar a conclusão da execução de `_submitForm`
-                    bool success = await _submitForm();
-                    if(success) {
-                      // Navegar para a próxima tela
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                            RegistoRegiao()),
-                      );
-                    } else{
-                      // Tratar o erro
-                      //print('Erro ao enviar dados do formulário');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                            RegistoRegiao()),
-                      );
+                      // Aqui você pode enviar `_empresa` para o servidor ou fazer outras operações.
+                      bool success = true;
+                      if(success) {
+                        // Navegar para a próxima tela
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              RegistoRegiao()),
+                        );
+                      } else{
+                        // Tratar o erro
+                        //print('Erro ao enviar dados do formulário');
+                      }
+                    } else {
+                      // Se o formulário for inválido, os campos que falharam na validação serão marcados.
+                      // Não faz nada.
                     }
                   },
                   child: Text("Continuar registo"),
                 ),
+
               ],
             ),
           ),
