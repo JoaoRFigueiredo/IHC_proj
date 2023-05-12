@@ -8,6 +8,7 @@ import 'package:ssd_frontend/firstPage.dart';
 import 'package:ssd_frontend/login/login_turista.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:image_card/image_card.dart';
+import 'result_search.dart';
 
 import 'home_screen.dart';
 
@@ -58,7 +59,7 @@ class Destinos extends StatelessWidget {
         primaryColor: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: firstPage(),
+      home: ResultSearch(),
     );
 
 
