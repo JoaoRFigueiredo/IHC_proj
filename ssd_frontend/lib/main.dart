@@ -60,7 +60,8 @@ class Destinos extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
 
-      home: firstPage(),
+      // home: firstPage(),
+      home: ResultSearch(),
     );
 
 

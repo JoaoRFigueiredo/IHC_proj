@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Restaurant {
+  final int id;
   final String name;
   final String district;
   final String city;
@@ -9,6 +10,7 @@ class Restaurant {
   final double distance;
 
   Restaurant({
+    required this.id,
     required this.name,
     required this.district,
     required this.city,
@@ -26,6 +28,7 @@ class ResultSearch extends StatefulWidget {
 class _ResultSearchState extends State<ResultSearch> {
   final List<Restaurant> restaurants = [
     Restaurant(
+      id: 1,
       name: 'Sal na Brasa',
       distance: 1.2,
       image: 'assets/images_restaurants/res3.jpg',
@@ -34,6 +37,7 @@ class _ResultSearchState extends State<ResultSearch> {
       cuisineType: 'Example Cuisine',
     ),
     Restaurant(
+      id: 2,
       name: 'O Forno da Mimi',
       distance: 1.5,
       image: 'assets/images_restaurants/res1.jpg',
@@ -42,6 +46,7 @@ class _ResultSearchState extends State<ResultSearch> {
       cuisineType: 'Pizza',
     ),
     Restaurant(
+      id: 3,
       name: 'Esplanada Santa Joana',
       distance: 1.7,
       image: 'assets/images_restaurants/res2.jpg',
@@ -50,6 +55,7 @@ class _ResultSearchState extends State<ResultSearch> {
       cuisineType: 'Portuguese Cuisine',
     ),
     Restaurant(
+      id: 4,
       name: 'Retiro da Avo Maria',
       distance: 2.0,
       image: 'assets/images_restaurants/res4.jpg',
@@ -58,6 +64,7 @@ class _ResultSearchState extends State<ResultSearch> {
       cuisineType: 'Portuguese Cuisine',
     ),
     Restaurant(
+      id: 5,
       name: 'O Mercantel',
       distance: 2.5,
       image: 'assets/images_restaurants/res5.jpg',
@@ -68,7 +75,7 @@ class _ResultSearchState extends State<ResultSearch> {
   ];
 
   Set<int> favorites = Set<int>();
-
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +117,7 @@ class _ResultSearchState extends State<ResultSearch> {
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
                 children: restaurants.map((restaurant) {
-                  bool isFavorite = favorites.contains(restaurants.indexOf(restaurant));
+                   isFavorite = favorites.contains(restaurant.id);
                   return GestureDetector(
   onTap: () {
     showDialog(
@@ -204,11 +211,10 @@ class _ResultSearchState extends State<ResultSearch> {
                           ),
   onPressed: () {
   setState(() {
-    isFavorite = !isFavorite;
-    if (isFavorite) {
-      favorites.add(restaurant.hashCode);
+    if (favorites.contains(restaurant.id)) {
+      favorites.remove(restaurant.id);
     } else {
-      favorites.remove(restaurant.hashCode);
+      favorites.add(restaurant.id);
     }
   });
 },
