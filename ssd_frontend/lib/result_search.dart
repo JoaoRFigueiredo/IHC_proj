@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ssd_frontend/appbar_main.dart';
+import 'package:ssd_frontend/appbar_secondary.dart';
 
 class Restaurant {
   final int id;
@@ -90,47 +92,124 @@ Set<int> favorites = Set<int>();
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(
-      title: Text('Restaurants in Aveiro'),
-    ),
+      appBar: CustomAppBar_2(favorites: favorites),
+//     appBar: AppBar(
+//   title: Text('Restaurants in Aveiro'),
+//   actions: [
+//     Padding(
+//       padding: EdgeInsets.only(left: 16.0),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Tooltip(
+//             message: 'Interesses',
+//             child: IconButton(
+//               onPressed: () {
+//                 // Navigate to interests page
+//               },
+//               icon: Icon(Icons.list),
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//     Padding(
+//       padding: EdgeInsets.only(left: 16.0),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Stack(
+//             children: [
+//               Tooltip(
+//                 message: 'Favoritos',
+//                 child: IconButton(
+//                   onPressed: () {
+//                     // Navigate to favorites page
+//                   },
+//                   icon: Icon(Icons.favorite_border),
+//                 ),
+//               ),
+//               Positioned(
+//                 top: 0,
+//                 right: 0,
+//                 child: Container(
+//                   decoration: BoxDecoration(
+//                     shape: BoxShape.circle,
+//                     color: Colors.red,
+//                   ),
+//                   padding: EdgeInsets.all(4.0),
+//                   child: Text(
+//                     favorites.length.toString(),
+//                     style: TextStyle(
+//                       fontSize: 12,
+//                       color: Colors.white,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     ),
+//     Padding(
+//       padding: EdgeInsets.only(left: 16.0),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Tooltip(
+//             message: 'Login',
+//             child: IconButton(
+//               onPressed: () {
+//                 // Navigate to login page
+//               },
+//               icon: Icon(Icons.login),
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   ],
+// ),
     body: SingleChildScrollView(
       child: Container(
         height: MediaQuery.of(context).size.height,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              color: Colors.grey[300],
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: Text(
-                      'Aveiro - Distrito',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  VerticalDivider(),
-                  Flexible(
-                    child: Text(
-                      'Aveiro - Concelho',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  VerticalDivider(),
-                  Flexible(
-                    child: Text(
-                      'Gastronomia - Tipo',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            //   color: Colors.grey[000],
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Flexible(
+            //         child: Text(
+            //           'Aveiro - Distrito',
+            //           style: TextStyle(
+            //               fontSize: 16, fontWeight: FontWeight.bold),
+            //         ),
+            //       ),
+            //       VerticalDivider(),
+            //       Flexible(
+            //         child: Text(
+            //           'Aveiro - Concelho',
+            //           style: TextStyle(
+            //               fontSize: 16, fontWeight: FontWeight.bold),
+            //         ),
+            //       ),
+            //       VerticalDivider(),
+            //       Flexible(
+            //         child: Text(
+            //           'Gastronomia - Tipo',
+            //           style: TextStyle(
+            //               fontSize: 16, fontWeight: FontWeight.bold),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
