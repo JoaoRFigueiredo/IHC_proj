@@ -72,6 +72,15 @@ class _ResultSearchState extends State<ResultSearch> {
       district: 'Aveiro',
       cuisineType: 'Seafood',
     ),
+    Restaurant(
+      id: 6,
+      name: 'Un Poco Loco',
+      distance: 1.0,
+      image: 'assets/images_restaurants/res6.jpg',
+      city: 'Aveiro',
+      district: 'Aveiro',
+      cuisineType: 'Tacos',
+    ),
   ];
 
   Set<int> favorites = Set<int>();
@@ -144,17 +153,17 @@ class _ResultSearchState extends State<ResultSearch> {
             ),
             SizedBox(height: 8.0),
             Text(
-              'District: ${restaurant.district}',
+              'Distrito: ${restaurant.district}',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 8.0),
             Text(
-              'City: ${restaurant.city}',
+              'Concelho: ${restaurant.city}',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 8.0),
             Text(
-              'Cuisine Type: ${restaurant.cuisineType}',
+              'Tipo: ${restaurant.cuisineType}',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 16.0),
