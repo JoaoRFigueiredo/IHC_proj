@@ -83,168 +83,225 @@ class _ResultSearchState extends State<ResultSearch> {
     ),
   ];
 
-  Set<int> favorites = Set<int>();
-  bool isFavorite = false;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Restaurants in Aveiro'),
-      ),
-        body: SingleChildScrollView(
-    child: Container(
-      height: MediaQuery.of(context).size.height,
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            color: Colors.grey[300],
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(height: 20),
-                Text(
-                  'Aveiro - Distrito',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Aveiro - Concelho',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Gastronomia - Tipo',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                children: restaurants.map((restaurant) {
-                   isFavorite = favorites.contains(restaurant.id);
-                  return GestureDetector(
-  onTap: () {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
+bool isFavorite = false;
+
+Set<int> favorites = Set<int>();
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Restaurants in Aveiro'),
+    ),
+    body: SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            LimitedBox(
-              maxHeight: MediaQuery.of(context).size.height * 0.7,
-              maxWidth: MediaQuery.of(context).size.width * 0.7,
-              child: Image.asset(
-                restaurant.image,
-                fit: BoxFit.cover,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              color: Colors.grey[300],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      'Aveiro - Distrito',
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  VerticalDivider(),
+                  Flexible(
+                    child: Text(
+                      'Aveiro - Concelho',
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  VerticalDivider(),
+                  Flexible(
+                    child: Text(
+                      'Gastronomia - Tipo',
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 16.0),
-            Text(
-              restaurant.name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20.0,
-              ),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Distrito: ${restaurant.district}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Concelho: ${restaurant.city}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Tipo: ${restaurant.cuisineType}',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
-        ),
-      ),
-    );
-  },
-  child: Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: LimitedBox(
-            maxHeight: MediaQuery.of(context).size.height * 0.4,
-            child: Image.asset(
-              restaurant.image,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            restaurant.name,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 4.0,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${restaurant.distance} km',
-                style: TextStyle(fontSize: 14),
-              ),
-              IconButton(
-                          icon: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_outline,
-                            color: isFavorite ? Colors.red : null,
-                          ),
-  onPressed: () {
-  setState(() {
-    if (favorites.contains(restaurant.id)) {
-      favorites.remove(restaurant.id);
-    } else {
-      favorites.add(restaurant.id);
-    }
-  });
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  children: restaurants
+                      .map(
+                        (restaurant) => GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    LimitedBox(
+                                      maxHeight:
+                                          MediaQuery.of(context).size.height *
+                                              0.7,
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width *
+                                              0.7,
+                                      child: Image.asset(
+                                        restaurant.image,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    Text(
+                                      restaurant.name,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      'Distrito: ${restaurant.district}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      'Concelho: ${restaurant.city}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 8.0),
+                                    Text(
+                                      'Tipo: ${restaurant.cuisineType}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          child: Card(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: LimitedBox(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            0.4,
+                                    child: Stack(
+                                      children: [
+                                        Positioned.fill(
+                                          child: Image.asset(
+                                            restaurant.image,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                              vertical:
+8.0,
+),
+color: Colors.black54,
+child: Row(
+mainAxisAlignment:
+MainAxisAlignment
+.spaceBetween,
+children: [
+Expanded(
+child: Padding(
+padding:
+const EdgeInsets.only(
+left: 8.0),
+child: Text(
+restaurant.name,
+style: TextStyle(
+color: Colors.white,
+fontWeight:
+FontWeight.bold,
+fontSize: 16.0),
+),
+),
+),
+IconButton(
+icon: Icon(
+favorites.contains(
+restaurant.id)
+? Icons.favorite
+: Icons.favorite_border,
+color: Colors.red,
+),
+onPressed: () {
+setState(() {
+if (favorites
+.contains(
+restaurant.id)) {
+favorites.remove(
+restaurant.id);
+} else {
+favorites.add(
+restaurant.id);
+}
+});
 },
 ),
-
-            ],
-          ),
-        ),
-      ],
-    ),
-  ),
-);
-}).toList(),
-)
+],
+),
 ),
 ),
 ],
 ),
-    ),
-  ),
-  resizeToAvoidBottomInset: false,
+),
+),
+SizedBox(
+height: 8.0,
+),
+Text(
+restaurant.name,
+style: TextStyle(
+fontWeight: FontWeight.bold,
+fontSize: 16.0),
+),
+SizedBox(
+height: 8.0,
+),
+Text(
+restaurant.cuisineType,
+style: TextStyle(fontSize: 16.0),
+),
+],
+),
+),
+),
+)
+.toList(),
+),
+),
+),
+],
+),
+),
+),
 );
 }
 }
