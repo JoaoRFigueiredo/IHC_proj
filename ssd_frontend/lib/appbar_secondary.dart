@@ -422,7 +422,7 @@ Tooltip(
   ),
 ),
 Tooltip(
-  message: 'Login',
+  message: 'Log-out',
   child: IconButton(
     icon: Icon(Icons.login, color: Colors.blue[500]),
     onPressed: () {

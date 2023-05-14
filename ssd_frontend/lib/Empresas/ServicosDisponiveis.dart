@@ -5,14 +5,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
-//import 'package:ssd_frontend/formularios/forms_alojamento.dart';
-//import 'package:ssd_frontend/formularios/forms_monumentos.dart';
+import 'package:ssd_frontend/formularios/forms_alojamento.dart';
+import 'package:ssd_frontend/formularios/forms_monumentos.dart';
+import 'package:ssd_frontend/formularios/forms_restauracao.dart';
+
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
 import '../componentes/constants.dart';
 import '../componentes/simple_ui_controller.dart';
 import '../features_empresa/features_empresa.dart';
-import '../servicos/criar_anuncio_hotelaria.dart';
-import '../formularios/forms_restauracao.dart';
+// import '../servicos/criar_anuncio_hotelaria.dart';
+// import '../formularios/forms_restauracao.dart';
 
 
 class ServicosDisponiveis extends StatefulWidget {
@@ -138,7 +140,7 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CriarAnuncioHotelaria()),
+                        MaterialPageRoute(builder: (context) => RestaurantForm()),
 
                       );
                     },
@@ -185,9 +187,9 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
                 height: height*0.1,
                 child: ElevatedButton(
                     onPressed: () {
-                      //Navigator.push(context, MaterialPageRoute(
-                         // builder: (context) => AlojamentoForm())
-                      //);
+                      Navigator.push(context, MaterialPageRoute(
+                         builder: (context) => AlojamentoForm())
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       shadowColor: Colors.black,
@@ -232,9 +234,9 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
                 height: height*0.1,
                 child: ElevatedButton(
                     onPressed: () {
-                      //Navigator.push(context, MaterialPageRoute(
-                        //  builder: (context) => MonumentoForm())
-                      //);
+                      Navigator.push(context, MaterialPageRoute(
+                         builder: (context) => MonumentoForm())
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       shadowColor: Colors.black,

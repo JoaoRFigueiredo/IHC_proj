@@ -5,7 +5,8 @@ import 'package:ssd_frontend/AboutUS.dart';
 import 'package:ssd_frontend/Empresas/RegistoEmpresaPage.dart';
 import 'package:ssd_frontend/features_empresa/features_empresa.dart';
 import 'package:ssd_frontend/login/login_turista.dart';
-import 'package:ssd_frontend/servicos/servicos.dart';
+import 'package:ssd_frontend/Empresas/ServicosDisponiveis.dart';
+ 
 class CustomAppBar2 extends StatelessWidget {
   const CustomAppBar2 ({Key? key}) : super(key: key);
 
@@ -159,11 +160,11 @@ class CustomAppBar2 extends StatelessWidget {
           ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => LoginTurista())
+                    builder: (context) => ServicosDisponiveis())
                 );
               },
               child: Text(
-                "Login",
+                "Criar Publicidade",
                 style: TextStyle(
                   fontSize: 18,
                 ),

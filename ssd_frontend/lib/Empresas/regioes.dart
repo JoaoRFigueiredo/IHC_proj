@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ssd_frontend/Empresas/ServicosDisponiveis.dart';
+import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
 // ...
 
 
@@ -189,13 +190,12 @@ class _RegistoRegiaoPageState extends State<RegistoRegiao> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) =>
-                                    ServicosDisponiveis()),
+                                    homeScreentwo()),
                               );
                             } else{
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) =>
-                                    ServicosDisponiveis()),
+                                MaterialPageRoute(builder: (context) => ServicosDisponiveis()),
                               );
                               // Tratar o erro
                               //print('Erro ao enviar dados do formulário');
