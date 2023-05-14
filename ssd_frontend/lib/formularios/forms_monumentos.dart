@@ -317,11 +317,11 @@ class _MonumentoFormState extends State<MonumentoForm> {
                 ),
                 validator: (value) {
                   if (value?.isEmpty ?? true) {
-                    return "Insira a latitude";
+                    return "Insira a morada";
                   }
-                  if (double.tryParse(value!) == null) {
-                    return "A latitude deve ser um número válido(por exemplo: 12.345)";
-                  }
+                  // if (double.tryParse(value!) == null) {
+                  //   return "A latitude deve ser um número válido(por exemplo: 12.345)";
+                  // }
                   return null;
                 },
               ),
@@ -354,59 +354,83 @@ class _MonumentoFormState extends State<MonumentoForm> {
 
 
 
-  void _saveMonumento() async {
-      final user = FirebaseAuth.instance.currentUser;
-    final email = user?.email ?? "";
-    if (_formKey.currentState!.validate()) {
-      Map<String, dynamic> monumentoData = {
-        'name': _nameController.text,
-        'story': _storyController.text,
-        'style': _styleController.text,
-        'accessability': _accessabilityController.text,
-        'schedule': _scheduleController.text,
-        'price': _priceController.text,
-        'activity': _activityController.text,
-        'guide_visit': _guideVisitController.text,
-        'images': _imageStringList,
-        'imageDescriptions': _imageDescriptionList,
-        // 'location': _locationController.text,
-        'latitude': _latitudeController.text,
-        'longitude': _longitudeController.text,
-        'user_email': email,
-      };
+  // void _saveMonumento() async {
+  //     final user = FirebaseAuth.instance.currentUser;
+  //   final email = user?.email ?? "";
+  //   if (_formKey.currentState!.validate()) {
+  //     Map<String, dynamic> monumentoData = {
+  //       'name': _nameController.text,
+  //       'story': _storyController.text,
+  //       'style': _styleController.text,
+  //       'accessability': _accessabilityController.text,
+  //       'schedule': _scheduleController.text,
+  //       'price': _priceController.text,
+  //       'activity': _activityController.text,
+  //       'guide_visit': _guideVisitController.text,
+  //       'images': _imageStringList,
+  //       'imageDescriptions': _imageDescriptionList,
+  //       // 'location': _locationController.text,
+  //       'latitude': _latitudeController.text,
+  //       'longitude': _longitudeController.text,
+  //       'user_email': email,
+  //     };
 
-      String jsonBody = json.encode(monumentoData);
+  //     String jsonBody = json.encode(monumentoData);
 
-      Uri url = Uri.parse('http://127.0.0.1:8000/services/monumentos');
-      http.Response response = await http.post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonBody,
-      );
+  //     Uri url = Uri.parse('http://127.0.0.1:8000/services/monumentos');
+  //     http.Response response = await http.post(
+  //       url,
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: jsonBody,
+  //     );
 
-      if (response.statusCode == 200) {
-        // Se a solicitação for bem-sucedida, exiba uma mensagem de sucesso
-          Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ConfirmationPage(
-              confirmationText: '',
-            ),
+  //     if (response.statusCode == 200) {
+  //       // Se a solicitação for bem-sucedida, exiba uma mensagem de sucesso
+  //         Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => ConfirmationPage(
+  //             confirmationText: '',
+  //           ),
+  //         ),
+  //       );
+
+  //       // Limpe o formulário
+  //       _formKey.currentState!.reset();
+  //     } else {
+  //       // Se a solicitação falhar, exiba uma mensagem de erro
+  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //         content: Text('Ocorreu um erro ao criar o monumento.'),
+  //       ));
+  //     }
+  //   }
+  // }
+
+  void _submitForm() {
+  // Submit the form logic goes here
+
+  // Show a pop-up message
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Formulário submetido!'),
+        content: Text('O serviço de monumentos foi adicionado!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // Navigate to another page
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => homeScreentwo()));
+            },
+            child: Text('OK'),
           ),
-        );
-
-        // Limpe o formulário
-        _formKey.currentState!.reset();
-      } else {
-        // Se a solicitação falhar, exiba uma mensagem de erro
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Ocorreu um erro ao criar o monumento.'),
-        ));
-      }
-    }
-  }
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -441,7 +465,7 @@ class _MonumentoFormState extends State<MonumentoForm> {
               _buildLocationInput(),
               SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: _saveMonumento,
+                onPressed: _submitForm,
                 child: Text("Enviar"),
               ),
             ],

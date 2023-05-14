@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
@@ -324,11 +325,11 @@ Widget _buildRestaurantTypeInput() {
                 ),
                 validator: (value) {
                   if (value?.isEmpty ?? true) {
-                    return "Insira a latitude";
+                    return "Insira a morada";
                   }
-                  if (double.tryParse(value!) == null) {
-                    return "A latitude deve ser um número válido(por exemplo: 12.345)";
-                  }
+                  // if (double.tryParse(value!) == null) {
+                  //   return "A latitude deve ser um número válido(por exemplo: 12.345)";
+                  // }
                   return null;
                 },
               ),
@@ -420,67 +421,92 @@ Widget build(BuildContext context) {
   );
 }
 
-void _submitForm() async {
-  if (_formKey.currentState!.validate()) {
-    // Get the currently logged-in user's email
-    final user = FirebaseAuth.instance.currentUser;
-    final email = user?.email ?? "";
-    print(_imageDescriptionList);
+// void _submitForm() async {
+//   if (_formKey.currentState!.validate()) {
+//     Get the currently logged-in user's email
+//     final user = FirebaseAuth.instance.currentUser;
+//     final email = user?.email ?? "";
+//     print(_imageDescriptionList);
 
-    // Encode the form data and user email as a JSON object
-    final data = json.encode({
-      'name': _nameController.text,
-      'tipoEstabelecimento': _selectedTypes,
-      'ementa': _images_ementas_string_list,
-      'hours': _hoursController.text,
-      'description': _descriptionController.text,
-      'images': _imageStringList,
-      'imageDescriptions': _imageDescriptionList,
-      // 'location': _locationController.text,
-      'latitude': _latitudeController.text,
-      'longitude': _longitudeController.text,
-      'promo': _promoController.text,
-      'email': email,
-    });
+//     Encode the form data and user email as a JSON object
+//     final data = json.encode({
+//       'name': _nameController.text,
+//       'tipoEstabelecimento': _selectedTypes,
+//       'ementa': _images_ementas_string_list,
+//       'hours': _hoursController.text,
+//       'description': _descriptionController.text,
+//       'images': _imageStringList,
+//       'imageDescriptions': _imageDescriptionList,
+//       'location': _locationController.text,
+//       'latitude': _latitudeController.text,
+//       'longitude': _longitudeController.text,
+//       'promo': _promoController.text,
+//       'email': email,
+//     });
 
-    // Send the form data to the server
-    final response = await http.post(
-      Uri.parse(url),
-      body: data,
-    );
+//     Send the form data to the server
+//     final response = await http.post(
+//       Uri.parse(url),
+//       body: data,
+//     );
 
-    if (response.statusCode == 200) {
-      // Success: navigate to the confirmation page
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ConfirmationPage(
-            confirmationText: '',
+//     if (response.statusCode == 200) {
+//       Success: navigate to the confirmation page
+//       Navigator.push(
+//         context,
+//         MaterialPageRoute(
+//           builder: (context) => ConfirmationPage(
+//             confirmationText: '',
+//           ),
+//         ),
+//       );
+//     } else {
+//       Error: display an error dialog
+//       showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: Text('Erro'),
+//             content: Text('Não foi possível enviar os dados do formulário.'),
+//             actions: <Widget>[
+//               TextButton(
+//                 child: Text('Fechar'),
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 },
+//               ),
+//             ],
+//           );
+//         },
+//       );
+//     }
+//   }
+// }
+
+void _submitForm() {
+  // Submit the form logic goes here
+
+  // Show a pop-up message
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Formulário submetido!'),
+        content: Text('O serviço de restauração foi adicionado!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // Navigate to another page
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => homeScreentwo()));
+            },
+            child: Text('OK'),
           ),
-        ),
+        ],
       );
-    } else {
-      // Error: display an error dialog
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Erro'),
-            content: Text('Não foi possível enviar os dados do formulário.'),
-            actions: <Widget>[
-              TextButton(
-                child: Text('Fechar'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+    },
+  );
 }
+
 
 
   Widget _buildSubmitButton() {

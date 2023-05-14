@@ -241,11 +241,11 @@ Future<void> _getImage(ImageSource source) async {
                 ),
                 validator: (value) {
                   if (value?.isEmpty ?? true) {
-                    return "Insira a latitude";
+                    return "Insira a morada";
                   }
-                  if (double.tryParse(value!) == null) {
-                    return "A latitude deve ser um número válido(por exemplo: 12.345)";
-                  }
+                  // if (double.tryParse(value!) == null) {
+                  //   return "A latitude deve ser um número válido(por exemplo: 12.345)";
+                  // }
                   return null;
                 },
               ),
@@ -298,73 +298,97 @@ Future<void> _getImage(ImageSource source) async {
     );
   }
 
-  void _saveAlojamento() async {
-    //retriece user's email, this we can know to who the service belongs
-    final user = FirebaseAuth.instance.currentUser;
-    final email = user?.email ?? "";
+  // void _saveAlojamento() async {
+  //   //retriece user's email, this we can know to who the service belongs
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   final email = user?.email ?? "";
 
-    if (_formKey.currentState!.validate()) {
-      // List<List<int>> imageBytesList = [];
-      // for (File image in _imageList) {
-      //   final bytes = await image.readAsBytes();
-      //   imageBytesList.add(bytes);
-      // }
+  //   if (_formKey.currentState!.validate()) {
+  //     // List<List<int>> imageBytesList = [];
+  //     // for (File image in _imageList) {
+  //     //   final bytes = await image.readAsBytes();
+  //     //   imageBytesList.add(bytes);
+  //     // }
 
-      List<Map<String, dynamic>> imageDescriptionList = [];
-      for (String description in _imageDescriptionList) {
-        imageDescriptionList.add({'description': description});
-      }
+  //     List<Map<String, dynamic>> imageDescriptionList = [];
+  //     for (String description in _imageDescriptionList) {
+  //       imageDescriptionList.add({'description': description});
+  //     }
 
-      Map<String, dynamic> alojamentoData = {
-        'name': _nameController.text,
-        'description': _descriptionController.text,
-        'bedroom_type': _bedroomTypeController.text,
-        'bedroom_prices': _bedroomPricesController.text,
-        'services': _servicesController.text,
-        // 'location': _locationController.text,
-        'latitude': _latitudeController.text,
-        'longitude': _longitudeController.text,
-        'images': _imageStringList,
-        'image_descriptions': imageDescriptionList,
-        'user_email': email,
-      };
+  //     Map<String, dynamic> alojamentoData = {
+  //       'name': _nameController.text,
+  //       'description': _descriptionController.text,
+  //       'bedroom_type': _bedroomTypeController.text,
+  //       'bedroom_prices': _bedroomPricesController.text,
+  //       'services': _servicesController.text,
+  //       // 'location': _locationController.text,
+  //       'latitude': _latitudeController.text,
+  //       'longitude': _longitudeController.text,
+  //       'images': _imageStringList,
+  //       'image_descriptions': imageDescriptionList,
+  //       'user_email': email,
+  //     };
 
-      String jsonBody = json.encode(alojamentoData);
+  //     String jsonBody = json.encode(alojamentoData);
 
-      Uri url = Uri.parse('http://127.0.0.1:8000/services/alojamento');
-      http.Response response = await http.post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonBody,
+  //     Uri url = Uri.parse('http://127.0.0.1:8000/services/alojamento');
+  //     http.Response response = await http.post(
+  //       url,
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: jsonBody,
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       // Se a solicitação for bem-sucedida, exiba uma mensagem de sucesso
+  //           Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => ConfirmationPage(
+  //               confirmationText: '',
+  //             ),
+  //           ),
+  //         );
+
+  //       // Limpe o formulário e a lista de imagens
+  //       _formKey.currentState!.reset();
+  //       setState(() {
+  //         _imageList.clear();
+  //         _imageDescriptionList.clear();
+  //       });
+  //     } else {
+  //       // Se a solicitação falhar, exiba uma mensagem de erro
+  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //         content: Text('Ocorreu um erro ao criar o alojamento.'),
+  //       ));
+  //     }
+  //   }
+  // }
+
+  void _submitForm() {
+  // Submit the form logic goes here
+
+  // Show a pop-up message
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Formulário submetido!'),
+        content: Text('O serviço de alojamentos foi adicionado!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              // Navigate to another page
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => homeScreentwo()));
+            },
+            child: Text('OK'),
+          ),
+        ],
       );
-
-      if (response.statusCode == 200) {
-        // Se a solicitação for bem-sucedida, exiba uma mensagem de sucesso
-            Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ConfirmationPage(
-                confirmationText: '',
-              ),
-            ),
-          );
-
-        // Limpe o formulário e a lista de imagens
-        _formKey.currentState!.reset();
-        setState(() {
-          _imageList.clear();
-          _imageDescriptionList.clear();
-        });
-      } else {
-        // Se a solicitação falhar, exiba uma mensagem de erro
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Ocorreu um erro ao criar o alojamento.'),
-        ));
-      }
-    }
-  }
+    },
+  );
+}
 
 
   @override
@@ -396,7 +420,7 @@ Future<void> _getImage(ImageSource source) async {
               _buildLocationInput(),
               SizedBox(height: 20.0),
               ElevatedButton(
-                onPressed: _saveAlojamento,
+                onPressed: _submitForm,
                 child: Text("Enviar"),
               ),
             ],
