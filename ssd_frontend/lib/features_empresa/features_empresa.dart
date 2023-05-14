@@ -166,7 +166,11 @@ class _FeaturesEmpresaState extends State<FeaturesEmpresa> {
 
                   SizedBox(height: 16,),
 
-                  _ProfileInfoRow()
+                  _ProfileInfoRow(),
+
+                   const SizedBox(height: 16),
+
+                  _ProfileAd()
 
                 ],
               ),
@@ -183,8 +187,8 @@ class _ProfileInfoRow extends StatelessWidget {
   const _ProfileInfoRow({Key? key}) : super(key: key);
 
   final List<ProfileInfoItem> _items = const [
-    ProfileInfoItem("Anúncios", 5),
-    ProfileInfoItem("Visitantes", 40),
+    ProfileInfoItem("Anúncios", 1),
+    ProfileInfoItem("Visitantes", 666),
   ];
 
   @override
@@ -283,6 +287,70 @@ class _TopPortion extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _ProfileAd extends StatelessWidget {
+  const _ProfileAd({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0, 2),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Não perca esta grande oportunidade!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Arroz com sardinha em lata, por 5 euros, apenas a crianças no dia 1 de junho (Dia da Criança)!",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 16),
+            SizedBox(
+              height: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  "assets/ads/kidsDeal.jpg",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+          ],
+        ),
+      ),
     );
   }
 }

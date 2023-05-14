@@ -6,6 +6,7 @@ import 'package:ssd_frontend/AboutUS.dart';
 import 'package:ssd_frontend/registo_empresas/registo.dart';
 import 'package:ssd_frontend/registo_empresas/signUp_pessoa.dart';
 import 'result_search.dart';
+import 'home_screen.dart';
 
 import 'features_empresa/features_empresa.dart';
 import 'login/login_turista.dart';
@@ -287,14 +288,22 @@ class CustomAppBar_2 extends StatelessWidget with PreferredSizeWidget {
 
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 0),
-            child: Image.asset(
-              "assets/icons/icon_app.png",
-              height: 40,
-              alignment: Alignment.topLeft,
-            ),
-          ),
+          GestureDetector(
+  onTap: () {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => homeScreen()),
+    );
+  },
+  child: Padding(
+    padding: const EdgeInsets.only(left: 0),
+    child: Image.asset(
+      "assets/icons/icon_app.png",
+      height: 40,
+      alignment: Alignment.topLeft,
+    ),
+  ),
+),
 
 
           const SizedBox(width: 10),
