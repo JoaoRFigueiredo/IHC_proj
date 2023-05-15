@@ -260,7 +260,7 @@ class FavoritosState extends State<Favoritos> {
                       mainAxisSpacing: 16,
                       crossAxisSpacing: 16,
                       children: restaurants.map((restaurant) {
-                        bool isFavorite = false;
+                        bool isFavorite = true;
                         return GestureDetector(
                           onTap: () {
                             showDialog(
