@@ -492,7 +492,7 @@ void _submitForm() {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text('Formulário submetido!'),
-        content: Text('O serviço de restauração foi adicionado!'),
+        content: Text('A publicidade foi adicionada com sucesso!'),
         actions: [
           TextButton(
             onPressed: () {
