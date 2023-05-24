@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
+import 'package:ssd_frontend/features_empresa/features_empresa.dart';
+import 'package:ssd_frontend/formularios/PromoQuestion.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
@@ -407,8 +410,8 @@ Widget build(BuildContext context) {
             _buildImagesInput(),
             SizedBox(height: 20.0),
             _buildLocationInput(),
-            SizedBox(height: 20.0),
-            _buildPromoInput(),
+            // SizedBox(height: 20.0),
+            // _buildPromoInput(),
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: _submitForm, // Updated here
@@ -486,20 +489,33 @@ Widget build(BuildContext context) {
 void _submitForm() {
   // Submit the form logic goes here
 
-  // Show a pop-up message
+  // Show a dialog to ask the user if they want to add promotions
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text('Formulário submetido!'),
-        content: Text('O serviço de restauração foi adicionado!'),
+        content: Text('Deseja adicionar promoções?'),
         actions: [
           TextButton(
             onPressed: () {
-              // Navigate to another page
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => homeScreentwo()));
+              // Navigate to the PromoQuestion page
+              Navigator.of(context).pop(); // Close the dialog
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PromoQuestion()),
+              );
             },
-            child: Text('OK'),
+            child: Text('Sim'),
+          ),
+          TextButton(
+            onPressed: () {
+              // Navigate to the Profile page
+              Navigator.of(context).pop(); // Close the dialog
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => FeaturesEmpresa()),
+              );
+            },
+            child: Text('Não'),
           ),
         ],
       );

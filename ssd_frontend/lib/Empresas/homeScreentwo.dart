@@ -3,16 +3,28 @@ import 'package:ssd_frontend/Empresas/appbar_main_two.dart';
 import 'package:ssd_frontend/Empresas/body_main_two.dart';
 import 'body_main_two.dart';
 import 'appbar_main_two.dart';
+import 'package:ssd_frontend/firstPage.dart';
 
 class homeScreentwo extends StatelessWidget {
-  const homeScreentwo ({super.key});
+  const homeScreentwo({Key? key});
 
   @override
-  Widget build (BuildContext context) {
-
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => firstPage()),
+            );
+          },
+        ),
+        title: Text('Voltar para a página de seleção'),
+      ),
       body: Container(
         height: size.height,
         width: size.width,

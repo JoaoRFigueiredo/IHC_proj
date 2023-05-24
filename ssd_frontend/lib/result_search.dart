@@ -10,6 +10,7 @@ class Restaurant {
   final String cuisineType;
   final String image;
   final double distance;
+  final String phoneNumber;
 
   Restaurant({
     required this.id,
@@ -19,6 +20,7 @@ class Restaurant {
     required this.cuisineType,
     required this.image,
     required this.distance,
+    required this.phoneNumber,
   });
 }
 
@@ -37,6 +39,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Example Cuisine',
+      phoneNumber: "961245569"
     ),
     Restaurant(
       id: 2,
@@ -46,6 +49,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Pizza',
+      phoneNumber: "961245789"
     ),
     Restaurant(
       id: 3,
@@ -55,6 +59,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Portuguese Cuisine',
+      phoneNumber: "961245147"
     ),
     Restaurant(
       id: 4,
@@ -64,6 +69,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Portuguese Cuisine',
+      phoneNumber: "961241599"
     ),
     Restaurant(
       id: 5,
@@ -73,6 +79,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Seafood',
+      phoneNumber: "961286189"
     ),
     Restaurant(
       id: 6,
@@ -82,6 +89,7 @@ class _ResultSearchState extends State<ResultSearch> {
       city: 'Aveiro',
       district: 'Aveiro',
       cuisineType: 'Tacos',
+      phoneNumber: "961987789"
     ),
   ];
 
@@ -89,298 +97,178 @@ bool isFavorite = false;
 
 Set<int> favorites = Set<int>();
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: CustomAppBar_2(favorites: favorites),
-//     appBar: AppBar(
-//   title: Text('Restaurants in Aveiro'),
-//   actions: [
-//     Padding(
-//       padding: EdgeInsets.only(left: 16.0),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Tooltip(
-//             message: 'Interesses',
-//             child: IconButton(
-//               onPressed: () {
-//                 // Navigate to interests page
-//               },
-//               icon: Icon(Icons.list),
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//     Padding(
-//       padding: EdgeInsets.only(left: 16.0),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Stack(
-//             children: [
-//               Tooltip(
-//                 message: 'Favoritos',
-//                 child: IconButton(
-//                   onPressed: () {
-//                     // Navigate to favorites page
-//                   },
-//                   icon: Icon(Icons.favorite_border),
-//                 ),
-//               ),
-//               Positioned(
-//                 top: 0,
-//                 right: 0,
-//                 child: Container(
-//                   decoration: BoxDecoration(
-//                     shape: BoxShape.circle,
-//                     color: Colors.red,
-//                   ),
-//                   padding: EdgeInsets.all(4.0),
-//                   child: Text(
-//                     favorites.length.toString(),
-//                     style: TextStyle(
-//                       fontSize: 12,
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     ),
-//     Padding(
-//       padding: EdgeInsets.only(left: 16.0),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Tooltip(
-//             message: 'Login',
-//             child: IconButton(
-//               onPressed: () {
-//                 // Navigate to login page
-//               },
-//               icon: Icon(Icons.login),
-//             ),
-//           ),
-//         ],
-//       ),
-//     ),
-//   ],
-// ),
-    body: SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Container(
-            //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            //   color: Colors.grey[000],
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Flexible(
-            //         child: Text(
-            //           'Aveiro - Distrito',
-            //           style: TextStyle(
-            //               fontSize: 16, fontWeight: FontWeight.bold),
-            //         ),
-            //       ),
-            //       VerticalDivider(),
-            //       Flexible(
-            //         child: Text(
-            //           'Aveiro - Concelho',
-            //           style: TextStyle(
-            //               fontSize: 16, fontWeight: FontWeight.bold),
-            //         ),
-            //       ),
-            //       VerticalDivider(),
-            //       Flexible(
-            //         child: Text(
-            //           'Gastronomia - Tipo',
-            //           style: TextStyle(
-            //               fontSize: 16, fontWeight: FontWeight.bold),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  children: restaurants
-                      .map(
-                        (restaurant) => GestureDetector(
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    LimitedBox(
-                                      maxHeight:
-                                          MediaQuery.of(context).size.height *
-                                              0.7,
-                                      maxWidth:
-                                          MediaQuery.of(context).size.width *
-                                              0.7,
-                                      child: Image.asset(
-                                        restaurant.image,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    SizedBox(height: 16.0),
-                                    Text(
-                                      restaurant.name,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      'Distrito: ${restaurant.district}',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      'Concelho: ${restaurant.city}',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      'Tipo: ${restaurant.cuisineType}',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    SizedBox(height: 16.0),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('Close'),
-                                    ),
-                                  ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+          childAspectRatio: 3.0, // Adjust this value for desired aspect ratio
+          children: restaurants.map((restaurant) {
+            return GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Image.asset(
+                            restaurant.image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                restaurant.name,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0,
                                 ),
                               ),
-                            );
+                              SizedBox(height: 8.0),
+                              Text(
+                                'Distrito: ${restaurant.district}',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                'Concelho: ${restaurant.city}',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                'Tipo: ${restaurant.cuisineType}',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
                           },
-                          child: Card(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: LimitedBox(
-                                    maxHeight:
-                                        MediaQuery.of(context).size.height *
-                                            0.4,
-                                    child: Stack(
-                                      children: [
-                                        Positioned.fill(
-                                          child: Image.asset(
-                                            restaurant.image,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          child: Container(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                              vertical:
-8.0,
-),
-color: Colors.black54,
-child: Row(
-mainAxisAlignment:
-MainAxisAlignment
-.spaceBetween,
-children: [
-Expanded(
-child: Padding(
-padding:
-const EdgeInsets.only(
-left: 8.0),
-child: Text(
-restaurant.name,
-style: TextStyle(
-color: Colors.white,
-fontWeight:
-FontWeight.bold,
-fontSize: 16.0),
-),
-),
-),
-IconButton(
-icon: Icon(
-favorites.contains(
-restaurant.id)
-? Icons.favorite
-: Icons.favorite_border,
-color: Colors.red,
-),
-onPressed: () {
-setState(() {
-if (favorites
-.contains(
-restaurant.id)) {
-favorites.remove(
-restaurant.id);
-} else {
-favorites.add(
-restaurant.id);
-}
-});
-},
-),
-],
-),
-),
-),
-],
-),
-),
-),
-SizedBox(
-height: 8.0,
-),
-Text(
-restaurant.name,
-style: TextStyle(
-fontWeight: FontWeight.bold,
-fontSize: 16.0),
-),
-SizedBox(
-height: 8.0,
-),
-Text(
-restaurant.cuisineType,
-style: TextStyle(fontSize: 16.0),
-),
-],
-),
-),
-),
-)
-.toList(),
-),
-),
-),
-],
-),
-),
-),
-);
-}
+                          child: Text('Close'),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              child: Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Stack(
+                        children: [
+                          Positioned.fill(
+                            child: Image.asset(
+                              restaurant.image,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 8.0,
+                              ),
+                              color: Colors.black54,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      restaurant.name,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      favorites.contains(restaurant.id)
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (favorites.contains(restaurant.id)) {
+                                          favorites.remove(restaurant.id);
+                                        } else {
+                                          favorites.add(restaurant.id);
+                                        }
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            restaurant.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            'Distrito: ${restaurant.district}',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          Text(
+                            'Concelho: ${restaurant.city}',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          Text(
+                            'Tipo: ${restaurant.cuisineType}',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                           Text(
+                            'Contacto: ${restaurant.phoneNumber}',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
 }

@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:typed_data';
 import 'ConfirmationPage.dart';
 import 'package:ssd_frontend/Empresas/homeScreentwo.dart';
+import 'package:ssd_frontend/features_empresa/features_empresa.dart';
 
 
 
@@ -382,7 +383,7 @@ Future<void> _getImage(ImageSource source) async {
           TextButton(
             onPressed: () {
               // Navigate to another page
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => homeScreentwo()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => FeaturesEmpresa()));
             },
             child: Text('OK'),
           ),
