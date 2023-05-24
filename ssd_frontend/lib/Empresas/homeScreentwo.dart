@@ -23,7 +23,20 @@ class homeScreentwo extends StatelessWidget {
             );
           },
         ),
-        title: Text('Voltar para a página de seleção'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Voltar para a página de seleção'),
+            Text(
+              'Stakeholder',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
       body: Container(
         height: size.height,

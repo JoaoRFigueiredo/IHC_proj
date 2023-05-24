@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   //Size get preferredSize => MediaQuery.of(context).size;
   @override
   Widget build(BuildContext context) {
+    //favorites.add(1);
     return Container(
 
       margin: const EdgeInsets.all(20),
@@ -208,6 +209,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 class Restaurant {
   final String name;
+  final int id;
   final String district;
   final String city;
   final String cuisineType;
@@ -215,6 +217,7 @@ class Restaurant {
   final double distance;
 
   Restaurant({
+    required this.id,
     required this.name,
     required this.district,
     required this.city,
@@ -232,6 +235,7 @@ class Favoritos extends StatefulWidget {
 class FavoritosState extends State<Favoritos> {
   final List<Restaurant> restaurants = [
     Restaurant(
+      id: 1,
       name: 'Un Poco Loco',
       distance: 1.2,
       image: 'assets/images_restaurants/res6.jpg',
@@ -242,9 +246,16 @@ class FavoritosState extends State<Favoritos> {
   ];
 
   Set<int> favorites = Set<int>();
+    @override
+  void initState() {
+    super.initState();
+    favorites.add(1); // Add the value 1 to the favorites set
+  }
 
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
+    //favorites.add(1);
     return Scaffold(
       appBar: const CustomAppBar(),
       body: SingleChildScrollView(
@@ -260,7 +271,8 @@ class FavoritosState extends State<Favoritos> {
                       mainAxisSpacing: 16,
                       crossAxisSpacing: 16,
                       children: restaurants.map((restaurant) {
-                        bool isFavorite = true;
+                        //bool isFavorite = true;
+                        //favorites.add(restaurant.id);
                         return GestureDetector(
                           onTap: () {
                             showDialog(
@@ -355,25 +367,22 @@ class FavoritosState extends State<Favoritos> {
                                         style: const TextStyle(fontSize: 14),
                                       ),
                                       IconButton(
-                                        icon: Icon(
-                                          isFavorite
-                                              ? Icons.favorite
-                                              : Icons.favorite_outline,
-                                          color: isFavorite ? Colors.red : null,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            isFavorite = !isFavorite;
-                                            if (isFavorite) {
-                                              favorites
-                                                  .add(restaurant.hashCode);
-                                            } else {
-                                              favorites
-                                                  .remove(restaurant.hashCode);
-                                            }
-                                          });
-                                        },
-                                      ),
+                                    icon: Icon(
+                                      favorites.contains(restaurant.id)
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        if (favorites.contains(restaurant.id)) {
+                                          favorites.remove(restaurant.id);
+                                        } else {
+                                          favorites.add(restaurant.id);
+                                        }
+                                      });
+                                    },
+                                  ),
                                     ],
                                   ),
                                 ),
