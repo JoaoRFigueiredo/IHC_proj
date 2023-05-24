@@ -119,7 +119,7 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Text(
-            'Crie um serviço',
+            'Crie uma Publicidade',
             style: kLoginTitleStyle(size),
           ),
         ),

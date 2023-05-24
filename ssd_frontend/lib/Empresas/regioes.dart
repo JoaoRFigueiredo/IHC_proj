@@ -182,27 +182,38 @@ class _RegistoRegiaoPageState extends State<RegistoRegiao> {
 
                         ElevatedButton(
                           onPressed: () async {
-
-                            // Esperar a conclusão da execução de `_submitForm`
-                            bool success = true;
-                            if(success) {
-                              // Navegar para a próxima tela
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) =>
-                                    homeScreentwo()),
-                              );
-                            } else{
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ServicosDisponiveis()),
-                              );
-                              // Tratar o erro
-                              //print('Erro ao enviar dados do formulário');
-                            }
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Formulário submetido!'),
+                                  content: Text('A empresa foi registada com sucesso!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        // Fecha o AlertDialog e retorna true
+                                        Navigator.of(context).pop(true);
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ).then((value) {
+                              if (value == true) {
+                                // Navegar para a próxima tela
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => homeScreentwo()),
+                                );
+                              } else {
+                                // Tratar o caso onde o diálogo foi fechado sem pressionar "OK"
+                              }
+                            });
                           },
                           child: Text("Continuar registo"),
                         ),
+
 
                       ],
                     ),

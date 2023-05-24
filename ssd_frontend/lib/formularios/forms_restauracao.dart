@@ -495,7 +495,11 @@ void _submitForm() {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text('Formulário submetido!'),
+<<<<<<< HEAD
         content: Text('Deseja adicionar promoções?'),
+=======
+        content: Text('A publicidade foi adicionada com sucesso!'),
+>>>>>>> 93e353b497632b4cb39f04fd8d9b3eddfd56902c
         actions: [
           TextButton(
             onPressed: () {
