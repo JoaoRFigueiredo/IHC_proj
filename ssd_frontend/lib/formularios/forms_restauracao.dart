@@ -233,7 +233,7 @@ Widget _buildRestaurantTypeInput() {
             decoration: InputDecoration
             (
               border: OutlineInputBorder(),
-              hintText: "Insira o horário de funcionamento",
+              hintText: "Insira o horário de funcionamento: <hh:mn -- hh:mn>",
             ),
            validator: (value) {
               if (value == "") {
