@@ -36,19 +36,27 @@ class _ServicosDisponiveisState extends State<ServicosDisponiveis> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: false,
-          body: LayoutBuilder(
-            builder: (context, constraints) {
-              if (constraints.maxWidth > 600) {
-                return _buildLargeScreen(size, theme);
-              } else {
-                return _buildSmallScreen(size, theme);
-              }
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pop(context);
             },
-          )
+          ),
+        ),
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 600) {
+              return _buildLargeScreen(size, theme);
+            } else {
+              return _buildSmallScreen(size, theme);
+            }
+          },
+        ),
       ),
     );
+
   }
 
   /// For large screens
