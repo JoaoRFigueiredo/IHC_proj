@@ -378,23 +378,23 @@ Widget build(BuildContext context) {
                             fontSize: 16.0,
                           ),
                         ),
-                        SizedBox(height: 4.0),
-                        Text(
-                          'Distrito: ${restaurant.district}',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        Text(
-                          'Concelho: ${restaurant.city}',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        Text(
-                          'Tipo: ${restaurant.cuisineType}',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        Text(
-                          'Contacto: ${restaurant.phoneNumber}',
-                          style: TextStyle(fontSize: 14),
-                        ),
+                        // SizedBox(height: 4.0),
+                        // Text(
+                        //   'Distrito: ${restaurant.district}',
+                        //   style: TextStyle(fontSize: 14),
+                        // ),
+                        // Text(
+                        //   'Concelho: ${restaurant.city}',
+                        //   style: TextStyle(fontSize: 14),
+                        // ),
+                        // Text(
+                        //   'Tipo: ${restaurant.cuisineType}',
+                        //   style: TextStyle(fontSize: 14),
+                        // ),
+                        // Text(
+                        //   'Contacto: ${restaurant.phoneNumber}',
+                        //   style: TextStyle(fontSize: 14),
+                        // ),
                       ],
                     ),
                   ),
