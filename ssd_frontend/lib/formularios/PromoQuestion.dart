@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssd_frontend/features_empresa/features_empresa.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class PromoQuestion extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class PromoQuestion extends StatefulWidget {
 class _PromoQuestionState extends State<PromoQuestion> {
   List<Widget> promoFields = []; // List to hold the promotion text fields
   int promoCount = 1; // Initial number of promotions
+  AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -37,6 +39,24 @@ class _PromoQuestionState extends State<PromoQuestion> {
     });
   }
 
+void playSound() async {
+  int result = await audioPlayer.play('assets/ads/1093926272423428137.mp3', volume: 0.2);
+  if (result == 1) {
+    // Success
+    print('Sound played successfully.');
+  } else {
+    // Failure
+    print('Error playing sound.');
+  }
+}
+
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +82,7 @@ class _PromoQuestionState extends State<PromoQuestion> {
             ElevatedButton(
               onPressed: () {
                 // Perform any actions you need when the button is pressed
+                //playSound(); // Play the sound when the button is pressed
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => FeaturesEmpresa()),
                 );
